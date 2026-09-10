@@ -10,17 +10,21 @@ This document explains differences of these APIs at product and concept level; i
 
 The APIs within the **Connectivity Quality Management** domain are:
 
-| API Name | API Family | Description | Preview Only |
-| --- | --- | --- | --- |
-| `qos-profiles` | Quality On Demand | Discovery API that exposes the catalogue of QoS profiles (throughput, latency, priority) a CSP offers, including which profiles apply to a given device, so the right profile can be selected and referenced by the other CQM APIs. |  |
-| `quality-on-demand` | Quality On Demand | Requests that a QoD Session (with a QoS profile) be created and applied immediately, for a bounded duration, to one or more application data flows tied to a device — the "apply now, for a limited time" tool. |  |
-| `qos-provisioning` | Quality On Demand | Assigns a QoS profile to a device on a persistent basis, applied automatically whenever that device connects, until the assignment is explicitly removed. |  |
-| `qos-booking` | QoS Booking | Reserves one QoS profile for one device over a defined time window (immediate or future) and service area, giving confidence — pending CSP confirmation — that the requested quality will be usable. |  |
-| `qos-booking-and-assignment` | QoS Booking | Books connectivity for a time window, profile and service area while keeping device assignment separate, so devices can be added, removed, or swapped over the booking's lifetime. |  |
-| `dedicated-network` | Dedicated Networks | Reserves a connectivity environment — potentially spanning multiple QoS profiles — for a time window and service area, without binding devices at booking time; device access is managed separately. |  |
-| `dedicated-network-accesses` | Dedicated Networks | Companion API to `dedicated-network` that grants, changes, or revokes which devices may use a reserved connectivity environment. |  |
-| `dedicated-network-profiles` | Dedicated Networks | Discovery API for the catalogue of network profiles (predefined Dedicated Networks configurations) a CSP offers. | |
-| `dedicated-network-areas` | Dedicated Networks | Discovery API that exposes eligible service areas and the QoS/network profiles supported within each, so a consumer can select a valid area before reserving. | Yes |
+  - `qos-profiles`
+  - `quality-on-demand`
+  - `qos-provisioning`
+  - `qos-booking`
+  - `qos-booking-and-assignment`
+  - `dedicated-network`
+  - `dedicated-network-accesses`
+  - `dedicated-network-profiles`
+  - `dedicated-network-areas` *(preview capability)*
+
+A detailed description and grouping of the CQM APIs is provided in Section [5. Scope and Portfolio Grouping](#5-Scope-and-Portfolio-Grouping)
+
+NOTE: Selected preview capabilities (e.g. `dedicated-network-areas`) are explicitly identified where relevant.
+
+This document focuses on the CQM APIs listed above. Other CAMARA APIs in the broader Communication Quality area are related to connectivity-quality use cases, but are currently outside the main scope of this document and are briefly referenced in Appendix B for context.
 
 This document focuses on the CQM APIs listed above. Other CAMARA APIs in the broader [Communication Quality](https://camaraproject.org/api-overview/)  area are related to connectivity-quality use cases, but are currently outside the main scope of this document and are briefly referenced in Appendix B for context.
 
@@ -104,6 +108,8 @@ Table: Overview of the CQM APIs
 | `dedicated-network-accesses` | Dedicated Networks | Companion API to `dedicated-network` that grants, changes, or revokes which devices may use a reserved connectivity environment. |  |
 | `dedicated-network-profiles` | Dedicated Networks | Discovery API for the catalogue of network profiles (predefined Dedicated Networks configurations) a CSP offers. | |
 | `dedicated-network-areas` | Dedicated Networks | Discovery API that exposes eligible service areas and the QoS/network profiles supported within each, so a consumer can select a valid area before reserving. | Yes |
+
+
 The CQM APIs can be grouped by purpose:
 
 ![CQM Portfolio Grouping by Purpose](../images/section5_portfolio_grouping.svg)
