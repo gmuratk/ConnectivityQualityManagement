@@ -4,7 +4,7 @@
 
 Most applications consume mobile connectivity on a best-effort basis: the network tries to deliver the best possible performance at a given moment without an application explicitly requesting a defined connectivity quality. In practice, that performance may vary depending on factors such as network deployment, coverage conditions, location, mobility and current network usage.
 
-For some usage contexts, an API consumer — such as an Application Service Provider (ASP) — may need defined connectivity quality for a specific service, device, time or location. The CAMARA Connectivity Quality Management (CQM) portfolio addresses these needs through a set of specialised APIs. These tools address overlapping but distinct needs.
+For some usage contexts, an API consumer — such as an Application Service Provider (ASP) — may need defined connectivity quality for a specific service, device, time or location. The CAMARA Connectivity Quality Management (CQM) portfolio addresses these needs through a set of specialised APIs.
 
 This document explains differences of these APIs at product and concept level; it is not a normative specification, a Connectivity Service Provider (CSP) implementation roadmap or a strict API selection guide, and actual API availability and supported capabilities vary by CSP and market.
 
@@ -91,6 +91,19 @@ This journey is illustrative. It does **not** imply that every scenario uses eve
 
 ## 5. Scope and Portfolio Grouping
 
+Table: Overview of the CQM APIs
+
+| API Name | API Family | Description | Preview Only |
+| --- | --- | --- | --- |
+| `qos-profiles` | Quality On Demand | Discovery API that exposes the catalogue of QoS profiles (throughput, latency, priority) a CSP offers, including which profiles apply to a given device, so the right profile can be selected and referenced by the other CQM APIs. |  |
+| `quality-on-demand` | Quality On Demand | Requests that a QoD Session (with a QoS profile) be created and applied immediately, for a bounded duration, to one or more application data flows tied to a device — the "apply now, for a limited time" tool. |  |
+| `qos-provisioning` | Quality On Demand | Assigns a QoS profile to a device on a persistent basis, applied automatically whenever that device connects, until the assignment is explicitly removed. |  |
+| `qos-booking` | QoS Booking | Reserves one QoS profile for one device over a defined time window (immediate or future) and service area, giving confidence — pending CSP confirmation — that the requested quality will be usable. |  |
+| `qos-booking-and-assignment` | QoS Booking | Books connectivity for a time window, profile and service area while keeping device assignment separate, so devices can be added, removed, or swapped over the booking's lifetime. |  |
+| `dedicated-network` | Dedicated Networks | Reserves a connectivity environment — potentially spanning multiple QoS profiles — for a time window and service area, without binding devices at booking time; device access is managed separately. |  |
+| `dedicated-network-accesses` | Dedicated Networks | Companion API to `dedicated-network` that grants, changes, or revokes which devices may use a reserved connectivity environment. |  |
+| `dedicated-network-profiles` | Dedicated Networks | Discovery API for the catalogue of network profiles (predefined Dedicated Networks configurations) a CSP offers. | |
+| `dedicated-network-areas` | Dedicated Networks | Discovery API that exposes eligible service areas and the QoS/network profiles supported within each, so a consumer can select a valid area before reserving. | Yes |
 The CQM APIs can be grouped by purpose:
 
 ![CQM Portfolio Grouping by Purpose](../images/section5_portfolio_grouping.svg)
